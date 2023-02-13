@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MVCBlogProject.Models;
 using System.Diagnostics;
 
@@ -17,7 +18,7 @@ namespace MVCBlogProject.Controllers
         {
             return View();
         }
-
+        [Authorize(Policy = "IsWriter")] //Claim based authorization
         public IActionResult Privacy()
         {
             return View();
