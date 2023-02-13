@@ -20,5 +20,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         // Add your customizations after calling base.OnModelCreating(builder);
 
         builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
+
+        //string writerRoleId = Guid.NewGuid().ToString();
+        //string visitorRoleId = Guid.NewGuid().ToString();
     }
 }
