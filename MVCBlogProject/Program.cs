@@ -1,15 +1,30 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using MVCBlogProject.Areas.Identity.Data;
+using MVCIdentity.Servis;
+
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+//Özel saðlayýcýyý hizmet kapsayýcýsýna ekleme
+builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
+
+{
+    options.SignIn.RequireConfirmedAccount = true;
+    options.Tokens.ProviderMap.Add("CustomEmailConfirmation",
+        new TokenProviderDescriptor(
+            typeof(CustomEmailConfirmationTokenProvider<ApplicationUser>)));
+    options.Tokens.EmailConfirmationTokenProvider = "CustomEmailConfirmation";
+}).AddEntityFrameworkStores<ApplicationDbContext>()
+
+   .AddRoles<IdentityRole>()
+  .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddTransient<CustomEmailConfirmationTokenProvider<ApplicationUser>>();
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -22,6 +37,19 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("IsWriter", policy => policy.RequireClaim("IsWriter", "true"));
 });
+
+//Uygulamayý e-postayý destekleyecek þekilde yapýlandýrma
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.Configure<AuthMessageSenderOptions>(builder.Configuration);
+//Varsayýlan etkinlik dýþý zaman aþýmý
+builder.Services.ConfigureApplicationCookie(o => {
+    o.ExpireTimeSpan = TimeSpan.FromDays(5);
+    o.SlidingExpiration = true;
+});
+
+//Aþaðýdaki kod tüm veri koruma belirteçleri zaman aþýmý süresini 3 saat olarak deðiþtirir:
+builder.Services.Configure<DataProtectionTokenProviderOptions>(o =>
+       o.TokenLifespan = TimeSpan.FromHours(3));
 
 var app = builder.Build();
 
