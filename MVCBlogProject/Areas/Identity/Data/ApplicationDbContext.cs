@@ -22,16 +22,16 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
 
         string writerRoleId = Guid.NewGuid().ToString();
-       // string visitorRoleId = Guid.NewGuid().ToString();
+        string visitorRoleId = Guid.NewGuid().ToString();
 
-        IdentityRole adminRole = new IdentityRole { Id = writerRoleId, Name = "Writer", NormalizedName = "WRITER" };
-        //IdentityRole standardRole = new IdentityRole { Id = visitorRoleId, Name = "Visitor", NormalizedName = "VISITOR" };
+        IdentityRole writerRole = new IdentityRole { Id = writerRoleId, Name = "Writer", NormalizedName = "WRITER" };
+        IdentityRole visitorRole = new IdentityRole { Id = visitorRoleId, Name = "Visitor", NormalizedName = "VISITOR" };
 
-        builder.Entity<IdentityRole>().HasData(writerRoleId);
-       // builder.Entity<IdentityRole>().HasData(visitorRoleId);
+        builder.Entity<IdentityRole>().HasData(writerRole);
+       builder.Entity<IdentityRole>().HasData(visitorRole);
 
         string writerAppUserId = Guid.NewGuid().ToString();
-       // string visitorAppUserId = Guid.NewGuid().ToString();
+        string visitorAppUserId = Guid.NewGuid().ToString();
 
         var hasher = new PasswordHasher<IdentityUser>();
 
@@ -49,21 +49,35 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
         writerUser.PasswordHash = hasher.HashPassword(writerUser, "Writer123!");
 
-        //ApplicationUser standardUser = new ApplicationUser
-        //{
-        //    Id = standardAppUserId,
-        //    FirstName = "Standard",
-        //    LastName = "Standard",
-        //    Email = "standard@standard.com",
-        //    NormalizedEmail = "STANDARD@STANDARD.COM",
-        //    UserName = "standard@standard.com",
-        //    NormalizedUserName = "STANDARD@STANDARD.COM",
-        //    EmailConfirmed = true
-        //};
+        ApplicationUser visitorUser = new ApplicationUser
+        {
+            Id = visitorAppUserId,
+            FirstName = "Visitor",
+            LastName = "Visitor",
+            Email = "visitor@visitor.com",
+            NormalizedEmail = "VISITOR@VISITOR.COM",
+            UserName = "visitor@visitor.com",
+            NormalizedUserName = "VISITOR@VISITOR.COM",
+            EmailConfirmed = true
+        };
 
-        //standardUser.PasswordHash = hasher.HashPassword(standardUser, "Standard123!");
+        visitorUser.PasswordHash = hasher.HashPassword(visitorUser, "Visitor123!");
 
         builder.Entity<ApplicationUser>().HasData(writerUser);
-        //builder.Entity<ApplicationUser>().HasData(standardUser);
+        builder.Entity<ApplicationUser>().HasData(visitorUser);
+
+        IdentityUserRole<string> writerUserRole = new IdentityUserRole<string> { RoleId = writerRoleId, UserId = writerAppUserId };
+        IdentityUserRole<string> visitorUserRole = new IdentityUserRole<string> { RoleId = visitorRoleId, UserId = visitorAppUserId };
+
+        builder.Entity<IdentityUserRole<string>>().HasData(writerUserRole);
+        builder.Entity<IdentityUserRole<string>>().HasData(visitorUserRole);
+
+        builder.Entity<IdentityUserClaim<string>>().HasData(new IdentityUserClaim<string>
+        {
+            UserId = writerAppUserId,
+            Id = 1,
+            ClaimType = "IsWriter",
+            ClaimValue = "true"
+        });
     }
 }

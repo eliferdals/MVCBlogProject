@@ -47,6 +47,22 @@ namespace MVCBlogProject.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "ca8dcc40-d57d-48bf-a27d-9a3f23e65035",
+                            ConcurrencyStamp = "0dc64a65-732f-494e-b2a5-d45e9fdba928",
+                            Name = "Writer",
+                            NormalizedName = "WRITER"
+                        },
+                        new
+                        {
+                            Id = "192f8ed9-7a5f-4a02-8abb-536349bc0489",
+                            ConcurrencyStamp = "2e016467-fe2c-48e1-8372-c136ae0c50e1",
+                            Name = "Visitor",
+                            NormalizedName = "VISITOR"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -97,6 +113,15 @@ namespace MVCBlogProject.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("AspNetUserClaims", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClaimType = "IsWriter",
+                            ClaimValue = "true",
+                            UserId = "503ce294-8d79-4335-82ed-f7bdcff99d90"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -136,6 +161,18 @@ namespace MVCBlogProject.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "503ce294-8d79-4335-82ed-f7bdcff99d90",
+                            RoleId = "ca8dcc40-d57d-48bf-a27d-9a3f23e65035"
+                        },
+                        new
+                        {
+                            UserId = "4e2072ff-1788-4958-bca7-6dfcfd340eec",
+                            RoleId = "192f8ed9-7a5f-4a02-8abb-536349bc0489"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -232,6 +269,44 @@ namespace MVCBlogProject.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "503ce294-8d79-4335-82ed-f7bdcff99d90",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "e9199bf1-1cf8-4449-9875-8c0b4edca476",
+                            Email = "writer@writer.com",
+                            EmailConfirmed = true,
+                            FirstName = "Writer",
+                            LastName = "Writer",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "WRITER@WRITER.COM",
+                            NormalizedUserName = "WRITER@WRITER.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEObOkE1NBUfz2sFSwpS35ZNAC7dQhygctdqsaz6hbfn+WEN1H9TcPX9kE6d5/k5I4Q==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "31d6293e-0918-4953-b630-1a4bc1908276",
+                            TwoFactorEnabled = false,
+                            UserName = "writer@writer.com"
+                        },
+                        new
+                        {
+                            Id = "4e2072ff-1788-4958-bca7-6dfcfd340eec",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "2fdbe9b5-d121-4b16-ad73-17c03e6032d1",
+                            Email = "visitor@visitor.com",
+                            EmailConfirmed = true,
+                            FirstName = "Visitor",
+                            LastName = "Visitor",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "VISITOR@VISITOR.COM",
+                            NormalizedUserName = "VISITOR@VISITOR.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK6+OIjvEHhr6ECHmSUpuCGOWe7TDqVlXUr0vcMB2MqGygGlcCZMnq0ay7X9Lbit+A==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "fa6af51f-939c-4d77-931b-f3523008ce86",
+                            TwoFactorEnabled = false,
+                            UserName = "visitor@visitor.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

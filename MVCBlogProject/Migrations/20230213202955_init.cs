@@ -156,6 +156,39 @@ namespace MVCBlogProject.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "192f8ed9-7a5f-4a02-8abb-536349bc0489", "2e016467-fe2c-48e1-8372-c136ae0c50e1", "Visitor", "VISITOR" },
+                    { "ca8dcc40-d57d-48bf-a27d-9a3f23e65035", "0dc64a65-732f-494e-b2a5-d45e9fdba928", "Writer", "WRITER" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "4e2072ff-1788-4958-bca7-6dfcfd340eec", 0, "2fdbe9b5-d121-4b16-ad73-17c03e6032d1", "visitor@visitor.com", true, "Visitor", "Visitor", false, null, "VISITOR@VISITOR.COM", "VISITOR@VISITOR.COM", "AQAAAAEAACcQAAAAEK6+OIjvEHhr6ECHmSUpuCGOWe7TDqVlXUr0vcMB2MqGygGlcCZMnq0ay7X9Lbit+A==", null, false, "fa6af51f-939c-4d77-931b-f3523008ce86", false, "visitor@visitor.com" },
+                    { "503ce294-8d79-4335-82ed-f7bdcff99d90", 0, "e9199bf1-1cf8-4449-9875-8c0b4edca476", "writer@writer.com", true, "Writer", "Writer", false, null, "WRITER@WRITER.COM", "WRITER@WRITER.COM", "AQAAAAEAACcQAAAAEObOkE1NBUfz2sFSwpS35ZNAC7dQhygctdqsaz6hbfn+WEN1H9TcPX9kE6d5/k5I4Q==", null, false, "31d6293e-0918-4953-b630-1a4bc1908276", false, "writer@writer.com" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserClaims",
+                columns: new[] { "Id", "ClaimType", "ClaimValue", "UserId" },
+                values: new object[] { 1, "IsWriter", "true", "503ce294-8d79-4335-82ed-f7bdcff99d90" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "192f8ed9-7a5f-4a02-8abb-536349bc0489", "4e2072ff-1788-4958-bca7-6dfcfd340eec" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "ca8dcc40-d57d-48bf-a27d-9a3f23e65035", "503ce294-8d79-4335-82ed-f7bdcff99d90" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
