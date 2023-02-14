@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MVCBlogProject.Areas.Identity.Data;
+using MVCBlogProject.Entities.Concrete;
 
 namespace MVCBlogProject.Areas.Identity.Data;
 
@@ -11,7 +12,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         : base(options)
     {
     }
-
+    public DbSet<Article> Articles { get; set; }
+    public DbSet<ChoosenTopic> ChoosenTopics { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -28,7 +30,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         IdentityRole visitorRole = new IdentityRole { Id = visitorRoleId, Name = "Visitor", NormalizedName = "VISITOR" };
 
         builder.Entity<IdentityRole>().HasData(writerRole);
-       builder.Entity<IdentityRole>().HasData(visitorRole);
+        builder.Entity<IdentityRole>().HasData(visitorRole);
 
         string writerAppUserId = Guid.NewGuid().ToString();
         string visitorAppUserId = Guid.NewGuid().ToString();

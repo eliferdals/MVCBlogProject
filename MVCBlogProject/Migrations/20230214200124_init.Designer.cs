@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVCBlogProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230213202955_init")]
+    [Migration("20230214200124_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,36 @@ namespace MVCBlogProject.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("ApplicationUserChoosenTopic", b =>
+                {
+                    b.Property<string>("ApplicationUsersId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ChoosenTopicsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ApplicationUsersId", "ChoosenTopicsId");
+
+                    b.HasIndex("ChoosenTopicsId");
+
+                    b.ToTable("ApplicationUserChoosenTopic");
+                });
+
+            modelBuilder.Entity("ArticleChoosenTopic", b =>
+                {
+                    b.Property<string>("ArticlesId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ChoosenTopicsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ArticlesId", "ChoosenTopicsId");
+
+                    b.HasIndex("ChoosenTopicsId");
+
+                    b.ToTable("ArticleChoosenTopic");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -53,15 +83,15 @@ namespace MVCBlogProject.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ca8dcc40-d57d-48bf-a27d-9a3f23e65035",
-                            ConcurrencyStamp = "0dc64a65-732f-494e-b2a5-d45e9fdba928",
+                            Id = "980178ec-0295-48dd-bfd8-3d2a88900fed",
+                            ConcurrencyStamp = "230bcd26-f8a0-44a3-b1c3-c0ad88ca7480",
                             Name = "Writer",
                             NormalizedName = "WRITER"
                         },
                         new
                         {
-                            Id = "192f8ed9-7a5f-4a02-8abb-536349bc0489",
-                            ConcurrencyStamp = "2e016467-fe2c-48e1-8372-c136ae0c50e1",
+                            Id = "fa59d4d4-0f5e-426e-8dd9-2a9eb01c1013",
+                            ConcurrencyStamp = "b9de7e23-a5bd-4025-b82b-77d05a7026ba",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         });
@@ -122,7 +152,7 @@ namespace MVCBlogProject.Migrations
                             Id = 1,
                             ClaimType = "IsWriter",
                             ClaimValue = "true",
-                            UserId = "503ce294-8d79-4335-82ed-f7bdcff99d90"
+                            UserId = "dad2f021-a8a2-45a9-bf63-55da9c98e963"
                         });
                 });
 
@@ -167,13 +197,13 @@ namespace MVCBlogProject.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "503ce294-8d79-4335-82ed-f7bdcff99d90",
-                            RoleId = "ca8dcc40-d57d-48bf-a27d-9a3f23e65035"
+                            UserId = "dad2f021-a8a2-45a9-bf63-55da9c98e963",
+                            RoleId = "980178ec-0295-48dd-bfd8-3d2a88900fed"
                         },
                         new
                         {
-                            UserId = "4e2072ff-1788-4958-bca7-6dfcfd340eec",
-                            RoleId = "192f8ed9-7a5f-4a02-8abb-536349bc0489"
+                            UserId = "c6946778-e9a5-4b38-a86f-a3607855bf40",
+                            RoleId = "fa59d4d4-0f5e-426e-8dd9-2a9eb01c1013"
                         });
                 });
 
@@ -210,6 +240,12 @@ namespace MVCBlogProject.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -221,6 +257,9 @@ namespace MVCBlogProject.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
@@ -275,9 +314,10 @@ namespace MVCBlogProject.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "503ce294-8d79-4335-82ed-f7bdcff99d90",
+                            Id = "dad2f021-a8a2-45a9-bf63-55da9c98e963",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e9199bf1-1cf8-4449-9875-8c0b4edca476",
+                            ConcurrencyStamp = "63aa8106-73b2-4b92-82fb-4ba9d0bce984",
+                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "writer@writer.com",
                             EmailConfirmed = true,
                             FirstName = "Writer",
@@ -285,17 +325,18 @@ namespace MVCBlogProject.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "WRITER@WRITER.COM",
                             NormalizedUserName = "WRITER@WRITER.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEObOkE1NBUfz2sFSwpS35ZNAC7dQhygctdqsaz6hbfn+WEN1H9TcPX9kE6d5/k5I4Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDClrWimvZB7J7TH034l/A6uwUr6a5q6l7orIBNksqJS6A2EGk6WiivrtPKIYcMvww==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "31d6293e-0918-4953-b630-1a4bc1908276",
+                            SecurityStamp = "ac6e4ea5-9c14-4d3e-9b34-5eb024e3fa68",
                             TwoFactorEnabled = false,
                             UserName = "writer@writer.com"
                         },
                         new
                         {
-                            Id = "4e2072ff-1788-4958-bca7-6dfcfd340eec",
+                            Id = "c6946778-e9a5-4b38-a86f-a3607855bf40",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2fdbe9b5-d121-4b16-ad73-17c03e6032d1",
+                            ConcurrencyStamp = "7ebe7b6f-af60-4817-be19-0ccd2e93ee17",
+                            CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "visitor@visitor.com",
                             EmailConfirmed = true,
                             FirstName = "Visitor",
@@ -303,12 +344,93 @@ namespace MVCBlogProject.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "VISITOR@VISITOR.COM",
                             NormalizedUserName = "VISITOR@VISITOR.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEK6+OIjvEHhr6ECHmSUpuCGOWe7TDqVlXUr0vcMB2MqGygGlcCZMnq0ay7X9Lbit+A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEH1W+sMOW3LmPkGNOrYVRGPvYMF8ha5NHngvhmxhYaxVfnJY0WfInoe2hBK0I19OcA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "fa6af51f-939c-4d77-931b-f3523008ce86",
+                            SecurityStamp = "aa6db0fe-4907-4b12-a8cf-92b4bf2ed41e",
                             TwoFactorEnabled = false,
                             UserName = "visitor@visitor.com"
                         });
+                });
+
+            modelBuilder.Entity("MVCBlogProject.Entities.Concrete.Article", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ReadCount")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("ReadTime")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TitleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("Articles");
+                });
+
+            modelBuilder.Entity("MVCBlogProject.Entities.Concrete.ChoosenTopic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TopicName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ChoosenTopics");
+                });
+
+            modelBuilder.Entity("ApplicationUserChoosenTopic", b =>
+                {
+                    b.HasOne("MVCBlogProject.Areas.Identity.Data.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("ApplicationUsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MVCBlogProject.Entities.Concrete.ChoosenTopic", null)
+                        .WithMany()
+                        .HasForeignKey("ChoosenTopicsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ArticleChoosenTopic", b =>
+                {
+                    b.HasOne("MVCBlogProject.Entities.Concrete.Article", null)
+                        .WithMany()
+                        .HasForeignKey("ArticlesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MVCBlogProject.Entities.Concrete.ChoosenTopic", null)
+                        .WithMany()
+                        .HasForeignKey("ChoosenTopicsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -360,6 +482,22 @@ namespace MVCBlogProject.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("MVCBlogProject.Entities.Concrete.Article", b =>
+                {
+                    b.HasOne("MVCBlogProject.Areas.Identity.Data.ApplicationUser", "ApplicationUser")
+                        .WithMany("Articles")
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("MVCBlogProject.Areas.Identity.Data.ApplicationUser", b =>
+                {
+                    b.Navigation("Articles");
                 });
 #pragma warning restore 612, 618
         }
