@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace MVCBlogProject.Repositories.Concrete
 {
-    public class GenericRepository<T> : IRepository<T> where T : ApplicationUser
+    public class GenericRepository<T> : IRepository<T> where T : class
     {
         private readonly ApplicationDbContext db;
 

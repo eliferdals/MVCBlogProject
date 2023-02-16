@@ -1,0 +1,33 @@
+﻿@using MVCBlogProject.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity;
+@model ArticlesIndexVM
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    ViewData["Title"] = "Articles";
+    
+}
+
+<h1>Article Index</h1>
+
+
+    
+
+
+<table><thead>
+    <tr>
+        <th> Article </th>
+    </tr>
+</thead>
+    </table>
+    <tbody>
+        <tr>
+        <td>
+            @if (SignInManager.IsSignedIn(User)) {
+            <p>
+                <a asp-action="Write" class="btn btn-outline-success">Write</a>
+            </p>
+            }
+           
+        </td>
+        </tr>
+    </tbody>
