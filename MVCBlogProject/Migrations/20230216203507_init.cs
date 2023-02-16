@@ -59,8 +59,7 @@ namespace MVCBlogProject.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TopicName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    TopicName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -92,22 +91,22 @@ namespace MVCBlogProject.Migrations
                 name: "Articles",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ApplicationUserId = table.Column<int>(type: "int", nullable: false),
+                    ApplicationUserId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     TitleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReadTime = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReadCount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Articles", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Articles_AspNetUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
+                        name: "FK_Articles_AspNetUsers_ApplicationUserId1",
+                        column: x => x.ApplicationUserId1,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -223,7 +222,7 @@ namespace MVCBlogProject.Migrations
                 name: "ArticleChoosenTopic",
                 columns: table => new
                 {
-                    ArticlesId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ArticlesId = table.Column<int>(type: "int", nullable: false),
                     ChoosenTopicsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -248,8 +247,8 @@ namespace MVCBlogProject.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "980178ec-0295-48dd-bfd8-3d2a88900fed", "230bcd26-f8a0-44a3-b1c3-c0ad88ca7480", "Writer", "WRITER" },
-                    { "fa59d4d4-0f5e-426e-8dd9-2a9eb01c1013", "b9de7e23-a5bd-4025-b82b-77d05a7026ba", "Visitor", "VISITOR" }
+                    { "491f0f1f-39d9-417b-a326-a3a17631e556", "79ee04f1-8c35-4bc8-a810-45eeb2d00d48", "Writer", "WRITER" },
+                    { "7e4327bd-6f52-4493-805e-53c0cd6814c5", "6f1196d7-be9e-440a-bf73-884c54f68e79", "Visitor", "VISITOR" }
                 });
 
             migrationBuilder.InsertData(
@@ -257,24 +256,24 @@ namespace MVCBlogProject.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreationDate", "Description", "Email", "EmailConfirmed", "FirstName", "ImagePath", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "c6946778-e9a5-4b38-a86f-a3607855bf40", 0, "7ebe7b6f-af60-4817-be19-0ccd2e93ee17", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "visitor@visitor.com", true, "Visitor", null, "Visitor", false, null, "VISITOR@VISITOR.COM", "VISITOR@VISITOR.COM", "AQAAAAEAACcQAAAAEH1W+sMOW3LmPkGNOrYVRGPvYMF8ha5NHngvhmxhYaxVfnJY0WfInoe2hBK0I19OcA==", null, false, "aa6db0fe-4907-4b12-a8cf-92b4bf2ed41e", false, "visitor@visitor.com" },
-                    { "dad2f021-a8a2-45a9-bf63-55da9c98e963", 0, "63aa8106-73b2-4b92-82fb-4ba9d0bce984", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "writer@writer.com", true, "Writer", null, "Writer", false, null, "WRITER@WRITER.COM", "WRITER@WRITER.COM", "AQAAAAEAACcQAAAAEDClrWimvZB7J7TH034l/A6uwUr6a5q6l7orIBNksqJS6A2EGk6WiivrtPKIYcMvww==", null, false, "ac6e4ea5-9c14-4d3e-9b34-5eb024e3fa68", false, "writer@writer.com" }
+                    { "310f6a52-d404-40f6-9592-3a4ac5d44a2d", 0, "788222d1-e42a-4730-b44a-cac4f27b8724", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "writer@writer.com", true, "Writer", null, "Writer", false, null, "WRITER@WRITER.COM", "WRITER@WRITER.COM", "AQAAAAEAACcQAAAAEEEKagyLjwanJF2Q/lHsQjb4uwSxWSJSMyjJODNKtpLHc/+aKYSbk5+5Xc9bPIVwOg==", null, false, "450488a9-1318-4ef8-bbdc-b4db26c59bf2", false, "writer@writer.com" },
+                    { "6c906dd9-c075-4585-90fc-9606aca48355", 0, "5c594f55-afca-4740-8825-a3c9a2fe62b1", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "visitor@visitor.com", true, "Visitor", null, "Visitor", false, null, "VISITOR@VISITOR.COM", "VISITOR@VISITOR.COM", "AQAAAAEAACcQAAAAEBlPDMjg2bqhBJD7waPxDXGBa8TOMQF5YXydX5mibWUPiMPNs3ynt6TvRz3JC4WMUg==", null, false, "6c12aa9e-9d72-4ddd-af3b-f8fed5ceec43", false, "visitor@visitor.com" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserClaims",
                 columns: new[] { "Id", "ClaimType", "ClaimValue", "UserId" },
-                values: new object[] { 1, "IsWriter", "true", "dad2f021-a8a2-45a9-bf63-55da9c98e963" });
+                values: new object[] { 1, "IsWriter", "true", "310f6a52-d404-40f6-9592-3a4ac5d44a2d" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "fa59d4d4-0f5e-426e-8dd9-2a9eb01c1013", "c6946778-e9a5-4b38-a86f-a3607855bf40" });
+                values: new object[] { "491f0f1f-39d9-417b-a326-a3a17631e556", "310f6a52-d404-40f6-9592-3a4ac5d44a2d" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "980178ec-0295-48dd-bfd8-3d2a88900fed", "dad2f021-a8a2-45a9-bf63-55da9c98e963" });
+                values: new object[] { "7e4327bd-6f52-4493-805e-53c0cd6814c5", "6c906dd9-c075-4585-90fc-9606aca48355" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ApplicationUserChoosenTopic_ChoosenTopicsId",
@@ -287,9 +286,9 @@ namespace MVCBlogProject.Migrations
                 column: "ChoosenTopicsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Articles_ApplicationUserId",
+                name: "IX_Articles_ApplicationUserId1",
                 table: "Articles",
-                column: "ApplicationUserId");
+                column: "ApplicationUserId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
