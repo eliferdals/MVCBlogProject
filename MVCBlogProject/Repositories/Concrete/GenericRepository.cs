@@ -1,9 +1,10 @@
 ﻿using MVCBlogProject.Areas.Identity.Data;
+using MVCBlogProject.Repositories.Abstract;
 using System.Linq.Expressions;
 
 namespace MVCBlogProject.Repositories.Concrete
 {
-    public class GenericRepository<T> : IRepository<T> where T : BaseEntity
+    public class GenericRepository<T> : IRepository<T> where T : ApplicationUser
     {
         private readonly ApplicationDbContext db;
 
@@ -46,8 +47,8 @@ namespace MVCBlogProject.Repositories.Concrete
 
         public T GetById(int id)
         {
-            return db.Set<T>().FirstOrDefault(a => a.Id == id);
-            //return db.Set<T>().Find(id);
+            //return db.Set<T>().FirstOrDefault(a => a.Id == id);
+            return db.Set<T>().Find(id);
         }
 
         public IEnumerable<T> GetWhere(Expression<Func<T, bool>> predicate)
@@ -76,4 +77,4 @@ namespace MVCBlogProject.Repositories.Concrete
         }
     }
 }
-}
+
