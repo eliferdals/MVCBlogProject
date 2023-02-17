@@ -1,0 +1,12 @@
+﻿body {
+    background-color: yellow;
+}
+@font-face {
+    font-family: 'Gigi';
+    src: url('gigi.woff2') format('woff2'), url('gigi.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+navbar-toggler {
+    font-family: 'Gigi', sans-serif;
+}
