@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\css\StyleSheet.css" />
+    <None Include="wwwroot\image\bramble-icon.png" />
+    <None Include="wwwroot\image\bramble-icon.svg" />
+    <None Include="wwwroot\image\plum-flower-svgrepo-com.svg" />
+    <None Include="wwwroot\image\stay-bramble.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.13" />
