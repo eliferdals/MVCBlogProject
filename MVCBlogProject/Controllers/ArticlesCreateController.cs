@@ -26,11 +26,11 @@ namespace MVCBlogProject.Controllers
             return View(articlesIndexVM);
         }
         [HttpPost]
-        public IActionResult Create(Article article)
-        {
-            articleRepository.Add(article);
-            return RedirectToAction(nameof(Index));
-        }
+        //public IActionResult Create(Article article)
+        //{
+        //    articleRepository.Add(article);
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         public IActionResult AddArticle(string id, Article article)
         {

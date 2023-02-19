@@ -29,8 +29,9 @@
             </p>*@
            <hr />
  <div class="row">     
-     <div class="col-md-8">         
-         <form asp-action="AddArticle">             
+     <div class="col-md-8">
+     
+             <form asp-action="AddArticle">             
              <input asp-for="UserId" hidden />             
              <br />            
              <div class="form-group">                 
@@ -52,12 +53,13 @@
              <br />             
              <div class="form-group text-center">                 
                  <input type="submit" value="AddArticle" class="btn btn-info" />
-             </div>                      
+             </div>   
+             
            </form>     
 
            <form>
              <div class="card" style="width: 24rem">
-              <div class="row mt-5 justify-content-end">
+              <div class="row mt-2 justify-content-end">
            <div class="all-details">
            <img class="card-img-top" src="@("~/Image/" + Model.Image)" asp-append-version="true" />
           <h1>@Model.Name</h1>
@@ -75,12 +77,8 @@
      </div> 
  </div>
 
-
-
-                @section Scripts {
-                @{
-                        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-                    }
+ @section Scripts {
+                @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}   
             }
                 <script>
                     $('#Content').summernote({
@@ -99,7 +97,7 @@
                     });
                 </script>
             }
-           
+
         </td>
         </tr>
  </tbody>
