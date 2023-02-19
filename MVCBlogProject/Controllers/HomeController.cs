@@ -1,22 +1,32 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MVCBlogProject.Models;
+using MVCBlogProject.Repositories.Abstract;
+using MVCBlogProject.Repositories.Concrete;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace MVCBlogProject.Controllers
 {
     public class HomeController : Controller
     {
+        
         private readonly ILogger<HomeController> _logger;
+        private readonly IArticleRepository articleRepository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IArticleRepository articleRepository)
         {
             _logger = logger;
+            this.articleRepository = articleRepository;
         }
 
         public IActionResult Index()
         {
-            return View();
+            ArticlesIndexVM articleIndexVM = new ArticlesIndexVM();
+            var articles = articleRepository.GetAll();
+            articleIndexVM.Articles = articles;
+
+            return View(articleIndexVM);
         }
         [Authorize(Policy = "IsWriter")] //Claim based authorization
         public IActionResult Privacy()
@@ -29,5 +39,7 @@ namespace MVCBlogProject.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
     }
 }

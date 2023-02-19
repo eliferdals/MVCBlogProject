@@ -7,6 +7,7 @@ namespace MVCBlogProject.Repositories.Abstract
         IEnumerable<Article> GetAllIncludeChoosenTopic();
         public Article ArticleGetById(int id);
 
+        IEnumerable<Article> GetAllIncludeUsers();
         IEnumerable<Article> MostRead();
     }
 }

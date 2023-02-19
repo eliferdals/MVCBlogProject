@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MVCBlogProject.Entities.Concrete;
 using MVCBlogProject.Models;
 using MVCBlogProject.Repositories.Abstract;
 
@@ -20,20 +21,34 @@ namespace MVCBlogProject.Controllers
             var articles = articleRepository.GetAllIncludeChoosenTopic();
             ArticlesIndexVM articlesIndexVM= new ArticlesIndexVM();
             articlesIndexVM.Articles = articles;
+          
+
             return View(articlesIndexVM);
         }
-        //[HttpPost]
-        //public IActionResult Create(Article article) 
-        //{
-        //    articleRepository.Add(article);
-        //    return RedirectToAction(nameof(Index));
-        //}
+        [HttpPost]
+        public IActionResult Create(Article article)
+        {
+            articleRepository.Add(article);
+            return RedirectToAction(nameof(Index));
+        }
 
-        //public IActionResult Update(int id) 
-        //{
-        //    var article = articleRepository.GetById(id);
+        public IActionResult AddArticle(string id)
+        {
+            ArticlesIndexVM artilesIndexVM = new ArticlesIndexVM();
+            artilesIndexVM.UserId = id;
+            return View(artilesIndexVM);
+        }
+        [HttpPost]
+        public IActionResult AddArticle(ArticlesIndexVM articlesIndexVM) 
+        { Article article = new Article(); 
+            article.Content = articlesIndexVM.Content;
+            article.ApplicationUserId = articlesIndexVM.UserId; 
+            article.TitleName = articlesIndexVM.Name; 
+  
+            articleRepository.Add(article); 
+            return RedirectToAction(nameof(Index)); 
+        }
 
-        //    ArticleUpdateVM articleUpdateVM = new ArticleUpdateVM();
-        //}
+
     }
 }

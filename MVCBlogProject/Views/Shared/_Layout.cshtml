@@ -23,6 +23,21 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        
+                       <div class="container-fluid">
+                       <ul class="navbar-nav flex-grow-1">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Articles" asp-action="Index">Write</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Writers" asp-action="Index">Profile</a>
+                        </li>
+                        }
+                       </ul>
+                
+                       </div>
                         @*<li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>*@
@@ -35,106 +50,9 @@
             </div>
                 <partial name="_LoginPartial" /> 
         </nav>
-            <div class="container-fluid">
-                    <ul class="navbar-nav flex-grow-1">
-                        @if (SignInManager.IsSignedIn(User))
-                        {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Write" asp-action="Index">Write</a>
-                        </li>
-                        }
-                    </ul>
-                
-            </div>
         @*</nav>*@
     </header>
 
-    <div class="contenier" style="background-color: #1E0628;">
-     @*<div class="col-md-8">*@
-       <div class="row mt-5 justify-content-sm-around">
-         <div class="card" style="width: 24rem">
-           <img src="image/stay-bramble.png" class="card-img-top" alt="..." />
-              <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                             <p class="card-text">
-                                            Some quick example text to build on the card title and make up the
-                                            bulk of the card's content.
-                            </p>
-              </div>
-                  <ul class="list-group list-group-flush">
-                             <li class="list-group-item">An item</li>
-                             <li class="list-group-item">A second item</li>
-                             <li class="list-group-item">A third item</li>
-                  </ul>
-              <div class="card-body">
-                 <a href="#" class="btn btn-dark">continue to read</a>
-                                        @*<a href="#" class="btn btn-warning">Another link</a>*@
-              </div>
-              <div class="card-footer">
-                  <small class="text-muted"> <i class="bi bi-clock-history" style="font-size:20px"></i>Date    
-                       <i class="bg-info bi-eye" style="font-size:20px" > </i>views
-                       <i class="bi bi-chat-left-heart" style="font-size:20px"> </i> comments
-                   </small>
-               </div>
-
-          </div>
-       
-         @* </div>*@
-        @*<div class="row mt-5 justify-content-between">*@
-          <div class="card" style="width: 24rem">
-             <img src="image/stay-bramble.png" class="card-img-top" alt="..." />
-                <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">
-                                    Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.
-                                </p>
-               </div>
-                <ul class="list-group list-group-flush">
-                                <li class="list-group-item">An item</li>
-                                <li class="list-group-item">A second item</li>
-                                <li class="list-group-item">A third item</li>
-                 </ul>
-                <div class="card-body">
-                                <a href="#" class="btn btn-dark">continue to read</a>
-                                @*<a href="#" class="btn btn-warning">Another link</a>*@
-                </div>
-                <div class="card-footer">
-                                <small class="text-muted">
-                                    <i class="bi bi-clock-history" style="font-size:20px"></i>Date
-                                    <i class="bg-info bi-eye" style="font-size:20px"> </i>views
-                                    <i class="bi bi-chat-left-heart" style="font-size:20px"> </i> comments
-                                </small>
-                </div>
-          </div>
-        </br>
-          
-            <div class="card" style="width: 24rem;">
-                <img src="image/stay-bramble.png" class="card-img" alt="...">
-                <div class="card-body">
-                        <h5 class="card-title">Most Viewed Article</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-dark">Go somewhere</a>
-                </div>
-             </div>
-            
-       </div>
-   </div>
-            @* <div class="col-md-2">
-                   <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                        Categories
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-                    <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-                    <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-                   </div>
-               
-             </div>
-*@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
