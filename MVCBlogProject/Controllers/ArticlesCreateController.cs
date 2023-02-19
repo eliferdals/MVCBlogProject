@@ -5,11 +5,11 @@ using MVCBlogProject.Repositories.Abstract;
 
 namespace MVCBlogProject.Controllers
 {
-    public class ArticlesController : Controller
+    public class ArticlesCreateController : Controller
     {
-        private readonly IArticleRepository articleRepository;
+        private readonly IArticleCreateRepository articleRepository;
 
-        public ArticlesController(IArticleRepository articleRepository) 
+        public ArticlesCreateController(IArticleCreateRepository articleRepository) 
         {
             this.articleRepository = articleRepository;
         }
@@ -19,7 +19,7 @@ namespace MVCBlogProject.Controllers
         public IActionResult Index() 
         {
             var articles = articleRepository.GetAllIncludeChoosenTopic();
-            ArticlesIndexVM articlesIndexVM= new ArticlesIndexVM();
+            ArticlesCreateIndexVM articlesIndexVM= new ArticlesCreateIndexVM();
             articlesIndexVM.Articles = articles;
           
 
@@ -32,14 +32,14 @@ namespace MVCBlogProject.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult AddArticle(string id)
+        public IActionResult AddArticle(string id, Article article)
         {
-            ArticlesIndexVM artilesIndexVM = new ArticlesIndexVM();
+            ArticlesCreateIndexVM artilesIndexVM = new ArticlesCreateIndexVM();
             artilesIndexVM.UserId = id;
             return View(artilesIndexVM);
         }
         [HttpPost]
-        public IActionResult AddArticle(ArticlesIndexVM articlesIndexVM) 
+        public IActionResult AddArticle(ArticlesCreateIndexVM articlesIndexVM) 
         { Article article = new Article(); 
             article.Content = articlesIndexVM.Content;
             article.ApplicationUserId = articlesIndexVM.UserId; 

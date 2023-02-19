@@ -32,8 +32,8 @@ builder.Services.Configure<IdentityOptions>(options =>
 {
     options.User.RequireUniqueEmail = true;
 });
-builder.Services.AddTransient<IArticleRepository, ArticleRepository>();
-builder.Services.AddTransient<IWriterRepository, WriterRepository>();
+builder.Services.AddTransient<IArticleCreateRepository, ArticleCreateRepository>();
+//builder.Services.AddTransient<IWriterRepository, WriterRepository>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddAuthorization(options =>

@@ -1,4 +1,5 @@
 ﻿using MVCBlogProject.Areas.Identity.Data;
+using System.ComponentModel;
 
 namespace MVCBlogProject.Entities.Concrete
 {
@@ -15,6 +16,8 @@ namespace MVCBlogProject.Entities.Concrete
         public decimal ReadTime { get; set; }
         public int ReadCount { get; set; }
 
+        [DisplayName("Upload File")]
+        public string? ImagePath { get; set; }
         public string Content { get; set; }
         public ICollection<ChoosenTopic> ChoosenTopics { get; set; }
     }

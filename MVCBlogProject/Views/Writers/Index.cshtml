@@ -3,7 +3,7 @@
 @using Microsoft.AspNetCore.Identity;
 
 
-@model ArticlesIndexVM
+@*@model ArticlesCreateIndexVM
 @{
     ViewData["Title"] = "Writers";
     @inject SignInManager<ApplicationUser> SignInManager
@@ -21,7 +21,9 @@
 </div>
 <div> </div>
 *@
-<form asp-action="ReadArticle" asp-controller="Article">
+@*<h1>elif</h1>
+<div>
+    <form asp-action="ReadArticle" asp-controller="Article">
     <input asp-for="UserId" hidden />
     @foreach (var item in Model.Articles)
     {
@@ -44,3 +46,6 @@
     </div>
             }
 </form>
+
+
+</div>*@

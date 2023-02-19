@@ -29,11 +29,11 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Articles" asp-action="Index">Write</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ArticlesCreate" asp-action="Index">Write Brambles</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Writers" asp-action="Index">Profile</a>
-                        </li>
+                       @* <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Writers" asp-action="Index">Brambles</a>
+                        </li>*@
                         }
                        </ul>
                 

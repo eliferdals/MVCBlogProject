@@ -6,39 +6,39 @@ using System.Security.Claims;
 
 namespace MVCBlogProject.Controllers
 {
-    public class WritersController : Controller
-    {
-        private readonly IWriterRepository writerRepository;
-        private readonly IArticleRepository articleRepository;
-        public WritersController (IWriterRepository writerRepository, IArticleRepository articleRepository)
-        {
-            this.writerRepository = writerRepository;
-            this.articleRepository = articleRepository;
-        }
-        public IActionResult Index()
-        {
-            //var id = User.FindFirstValue(ClaimTypes.NameIdentifier); //profil yapmak için kullanıcı idsi veriyor
-            //var writers = writerRepository.GetAll();
-            //WritersIndexVM writersIndexVM = new WritersIndexVM();
-            //writersIndexVM.ApplicationUsers = writers;
-            //return View(writersIndexVM);
+    //public class WritersController : Controller
+    //{
+    //    private readonly IWriterRepository writerRepository;
+    //    private readonly IArticleCreateRepository articleRepository;
+    //    public WritersController (IWriterRepository writerRepository, IArticleCreateRepository articleRepository)
+    //    {
+    //        this.writerRepository = writerRepository;
+    //        this.articleRepository = articleRepository;
+    //    }
+    //    public IActionResult Index()
+    //    {
+    //        //var id = User.FindFirstValue(ClaimTypes.NameIdentifier); //profil yapmak için kullanıcı idsi veriyor
+    //        //var writers = writerRepository.GetAll();
+    //        //WritersIndexVM writersIndexVM = new WritersIndexVM();
+    //        //writersIndexVM.ApplicationUsers = writers;
+    //        //return View(writersIndexVM);
 
-            //var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //var user = writerRepository.GetByIdIncludeArticle(id);
-            //WritersIndexVM writersIndexVM = new WritersIndexVM();
-            //writersIndexVM.FirstName = user.FirstName;
-            //writersIndexVM.LastName = user.LastName;
-            //writersIndexVM.Id = user.Id;
-            //writersIndexVM.Articles = user.Articles;
-            //if (user.ImagePath != null)
-            //{ writersIndexVM.ImagePath = user.ImagePath; }
-            //return View(writersIndexVM);
+    //        //var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    //        //var user = writerRepository.GetByIdIncludeArticle(id);
+    //        //WritersIndexVM writersIndexVM = new WritersIndexVM();
+    //        //writersIndexVM.FirstName = user.FirstName;
+    //        //writersIndexVM.LastName = user.LastName;
+    //        //writersIndexVM.Id = user.Id;
+    //        //writersIndexVM.Articles = user.Articles;
+    //        //if (user.ImagePath != null)
+    //        //{ writersIndexVM.ImagePath = user.ImagePath; }
+    //        //return View(writersIndexVM);
 
-            var articles = articleRepository.GetAllIncludeUsers(); 
-            ArticlesIndexVM articlesIndexVM = new ArticlesIndexVM(); 
-            articlesIndexVM.Articles = articles; 
-            return View(articlesIndexVM);
-        }
+    //        var articles = articleRepository.GetAllIncludeUsers(); 
+    //        ArticlesCreateIndexVM articlesIndexVM = new ArticlesCreateIndexVM(); 
+    //        articlesIndexVM.Articles = articles; 
+    //        return View(articlesIndexVM);
+    //    }
 
 
         //public IActionResult GetWritersListPartial()
@@ -94,4 +94,4 @@ namespace MVCBlogProject.Controllers
         //    return Json("ok");
         //}
     }
-}
+

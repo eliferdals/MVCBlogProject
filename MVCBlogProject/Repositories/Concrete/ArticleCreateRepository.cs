@@ -5,11 +5,11 @@ using MVCBlogProject.Repositories.Abstract;
 
 namespace MVCBlogProject.Repositories.Concrete
 {
-    public class ArticleRepository : GenericRepository<Article>, IArticleRepository
+    public class ArticleCreateRepository : GenericRepository<Article>, IArticleCreateRepository
     {
         private readonly ApplicationDbContext db;
 
-        public ArticleRepository(ApplicationDbContext db) : base(db)
+        public ArticleCreateRepository(ApplicationDbContext db) : base(db)
         {
             this.db = db;
         }

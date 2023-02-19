@@ -12,21 +12,22 @@ namespace MVCBlogProject.Controllers
     {
         
         private readonly ILogger<HomeController> _logger;
-        private readonly IArticleRepository articleRepository;
+        //private readonly IArticleRepository articleRepository;
 
-        public HomeController(ILogger<HomeController> logger, IArticleRepository articleRepository)
+        public HomeController(ILogger<HomeController> logger, IArticleCreateRepository articleRepository)
         {
             _logger = logger;
-            this.articleRepository = articleRepository;
+            //this.articleRepository = articleRepository;
         }
 
         public IActionResult Index()
         {
-            ArticlesIndexVM articleIndexVM = new ArticlesIndexVM();
-            var articles = articleRepository.GetAll();
-            articleIndexVM.Articles = articles;
+            //ArticlesIndexVM articleIndexVM = new ArticlesIndexVM();
+            //var articles = articleRepository.GetAll();
+            //articleIndexVM.Articles = articles;
 
-            return View(articleIndexVM);
+            //return View(articleIndexVM);
+            return View();
         }
         [Authorize(Policy = "IsWriter")] //Claim based authorization
         public IActionResult Privacy()
