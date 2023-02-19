@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using MVCBlogProject.Areas.Identity.Data;
+using MVCBlogProject.Repositories.Abstract;
+using MVCBlogProject.Repositories.Concrete;
 using MVCIdentity.Servis;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,7 +32,8 @@ builder.Services.Configure<IdentityOptions>(options =>
 {
     options.User.RequireUniqueEmail = true;
 });
-
+builder.Services.AddTransient<IArticleCreateRepository, ArticleCreateRepository>();
+//builder.Services.AddTransient<IWriterRepository, WriterRepository>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddAuthorization(options =>

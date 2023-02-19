@@ -12,8 +12,9 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         : base(options)
     {
     }
-    public DbSet<Article> Articles { get; set; }
+    public DbSet<Article> ApplicationUsers { get; set; }
     public DbSet<ChoosenTopic> ChoosenTopics { get; set; }
+    public DbSet<Article> Articles { get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

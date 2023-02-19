@@ -6,40 +6,53 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MVCBlogProject</title>
+    <title> 🍇 Bramble</title>@*@ViewData["Title"] -*@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MVCBlogProject.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        @*<nav class="navbar navbar-expand-lg navbar-light bg-primary style="background-color: #3629A1;">*@
+        <nav class="navbar navbar-light navbar-expand-lg" style="background-color: #F2CD5C;">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MVCBlogProject</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <img src="/image/bramble-icon.svg" width="33"/>
+                <a class="navbar-brand" href="#" style="border-inline-end-color : #F2CD5C ">Bramble</a>
+             
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 80px;">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        
+                       <div class="container-fluid">
+                       <ul class="navbar-nav flex-grow-1">
                         @if (SignInManager.IsSignedIn(User))
                         {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="ArticlesCreate" asp-action="Index">Write Brambles</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Write" asp-action="Index">Write</a>
-                        </li>
+                       @* <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Writers" asp-action="Index">Brambles</a>
+                        </li>*@
                         }
+                       </ul>
+                
+                       </div>
+                        @*<li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>*@
+                     
                     </ul>
-                </div>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
             </div>
-            <partial name="_LoginPartial"/>
+                <partial name="_LoginPartial" /> 
         </nav>
+        @*</nav>*@
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -48,7 +61,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - MVCBlogProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - Bramble-Bee - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

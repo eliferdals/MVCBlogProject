@@ -1,0 +1,106 @@
+﻿@using MVCBlogProject.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Identity;
+@model ArticlesCreateIndexVM
+@inject SignInManager<ApplicationUser> SignInManager
+@{
+    ViewData["Title"] = "Article";
+    
+}
+
+
+<hr />
+<table>
+    <thead>
+    <tr>
+            <th> <h3>Create Article</h3> </th>
+            <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+     
+            <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    </tr>
+    </thead>
+</table>
+ <tbody>
+        <tr>
+        <td>
+            @if (SignInManager.IsSignedIn(User)) {
+           @* <p>
+                <a asp-action="Write" class="btn btn-outline-success">Write</a>
+            </p>*@
+           <hr />
+ <div class="row">     
+     <div class="col-md-8">
+     
+             <form asp-action="AddArticle">             
+             <input asp-for="UserId" hidden />             
+             <br />            
+             <div class="form-group">                 
+                 <label asp-for="Name" class="control-label"></label>                 
+                 <input asp-for="Name" class="form-control" />             
+             </div>             
+             <br />             
+             <div class="form-group">                
+                 <label asp-for="Content" class="control-label"></label>                 
+                 <textarea asp-for="Content" class="form-control" aria-label="With textarea"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+             </div>        
+             <div>
+                  <img src="@Model.Image" height="50" />
+
+                   <label class="form-label" asp-for="Image">Upload photo(jpeg/gif/png):</label>
+                  <input class="form-control" id="formFile" type="file" id="img" asp-for="Image" name="img" accept="image/*">
+             </div>
+             <br />             
+             <div class="form-group text-center">                 
+                 <input type="submit"  value="AddArticle" class="btn btn-info" />
+             </div>
+                           
+           @*</form> *@    
+
+                           @* @foreach (var item in Model.Articles)
+                            {*@
+             <div class="card" style="width: 24rem">
+              <div class="row mt-2 justify-content-end">
+           <div class="all-details">
+           <img class="card-img-top" src="@("~/Image/" + Model.Image)" asp-append-version="true" />
+          <h1>@Model.Name</h1>
+      @*     <h2>@Model.</h2>*@
+           <div class="box-maintext">
+            <p class="main-text">
+                @Html.Raw(Model.Content)
+            </p>
+                <input type="submit" class="btn btn-outline-danger" value="Read Article" asp-action="ReadArticle" asp-controller="Article" asp-route-id="@Model.UserId" />
+        </div>
+        </div>
+        </div>
+        </div>
+           </form>
+     </div> 
+ </div>
+
+ @section Scripts {
+                @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}   
+            }
+                <script>
+                    $('#Content').summernote({
+                        placeholder: 'Hello stand alone ui',
+                        tabsize: 2,
+                        height: 120,
+                        toolbar: [
+                            ['style', ['style']],
+                            ['font', ['bold', 'underline', 'clear']],
+                            ['color', ['color']],
+                            ['para', ['ul', 'ol', 'paragraph']],
+                            ['table', ['table']],
+                            ['insert', ['link', 'picture', 'video']],
+                            ['view', ['fullscreen', 'codeview', 'help']]
+                        ]
+                    });
+                </script>
+            }
+
+        </td>
+        </tr>
+ </tbody>
+
+ 

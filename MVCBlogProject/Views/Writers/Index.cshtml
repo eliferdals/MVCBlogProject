@@ -1,0 +1,51 @@
+﻿@using MVCBlogProject.Areas.Identity.Data;
+@using Microsoft.AspNetCore.Http;
+@using Microsoft.AspNetCore.Identity;
+
+
+@*@model ArticlesCreateIndexVM
+@{
+    ViewData["Title"] = "Writers";
+    @inject SignInManager<ApplicationUser> SignInManager
+}
+@*
+<h1>Writers Index</h1>
+
+<div id="openCloseWriterCreationFormButtonsPartial"></div>
+
+<div id="fail"></div>
+<div id="tables">
+    <div id="createWritersPartial" class="col-md-4"></></div>
+    <div id="updateWritersPartial" class="col-md-4"></></div>
+    <div id="WritersListPartial"></div>
+</div>
+<div> </div>
+*@
+@*<h1>elif</h1>
+<div>
+    <form asp-action="ReadArticle" asp-controller="Article">
+    <input asp-for="UserId" hidden />
+    @foreach (var item in Model.Articles)
+    {
+                         <div class="container my-5">
+                       <h2 class="text-center">Article List</h2>
+                        <div class="row">
+              
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="card-title" style="font-size:18px; max-height: 20px; overflow: hidden;">@item.TitleName</h3>
+                            <p class="card-text" style="font-size:18px; max-height: 28px; overflow: hidden;">@Html.DisplayFor(modelItem => item.ApplicationUser.FirstName)</p>
+                            <p class="card-text" >@item.Content.Substring(0,item.Content.Substring(0,50).LastIndexOf(" "))...</p>
+                            <p class="text-muted">Read Count: @item.ReadTime</p>
+                            <input type="submit" class="btn btn-outline-danger" value="Read Article" asp-action="ReadArticle" asp-controller="Article" asp-route-id="@item.Id" />
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+            }
+</form>
+
+
+</div>*@

@@ -4,6 +4,7 @@ using MVCBlogProject.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MVCBlogProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230219001511_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,15 +83,15 @@ namespace MVCBlogProject.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7f5f294b-536d-4b11-9e62-9bd84a25fb4a",
-                            ConcurrencyStamp = "785becd9-bba2-4281-a839-24467fc4fe9c",
+                            Id = "c6316c44-65e1-4879-80e4-9bf8894cfcd3",
+                            ConcurrencyStamp = "5f3b49de-609a-42f6-a4b3-77ab3d224b06",
                             Name = "Writer",
                             NormalizedName = "WRITER"
                         },
                         new
                         {
-                            Id = "3db9bd14-d0e1-40f4-b884-1f70d4fffe2d",
-                            ConcurrencyStamp = "87459e58-394e-47f2-a89f-0898cb4cbb2f",
+                            Id = "6c7e1527-eaad-4c73-91da-a060aaeb865a",
+                            ConcurrencyStamp = "50ed66da-fce5-4169-9001-fa76987471e2",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         });
@@ -150,7 +152,7 @@ namespace MVCBlogProject.Migrations
                             Id = 1,
                             ClaimType = "IsWriter",
                             ClaimValue = "true",
-                            UserId = "1123b88b-e9eb-4e99-9968-d507658335d6"
+                            UserId = "3ec98f66-93f8-4940-9b78-21597a33af01"
                         });
                 });
 
@@ -195,13 +197,13 @@ namespace MVCBlogProject.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "1123b88b-e9eb-4e99-9968-d507658335d6",
-                            RoleId = "7f5f294b-536d-4b11-9e62-9bd84a25fb4a"
+                            UserId = "3ec98f66-93f8-4940-9b78-21597a33af01",
+                            RoleId = "c6316c44-65e1-4879-80e4-9bf8894cfcd3"
                         },
                         new
                         {
-                            UserId = "4e844ced-6701-4ec3-bf8b-077b160915af",
-                            RoleId = "3db9bd14-d0e1-40f4-b884-1f70d4fffe2d"
+                            UserId = "fb40a4cc-e191-4521-8dd4-3120a358bb44",
+                            RoleId = "6c7e1527-eaad-4c73-91da-a060aaeb865a"
                         });
                 });
 
@@ -312,9 +314,9 @@ namespace MVCBlogProject.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1123b88b-e9eb-4e99-9968-d507658335d6",
+                            Id = "3ec98f66-93f8-4940-9b78-21597a33af01",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1023e1fe-9cda-41bc-9274-3dfd6734ac04",
+                            ConcurrencyStamp = "b9332693-7fd5-438f-a4e2-feeef72c28e0",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "writer@writer.com",
                             EmailConfirmed = true,
@@ -323,17 +325,17 @@ namespace MVCBlogProject.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "WRITER@WRITER.COM",
                             NormalizedUserName = "WRITER@WRITER.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAECbnc+tceyCc3V/rwMIYouow1UYQgHTp0GZlapQYi9Q6xkCAV90YYxwr0PF4qaZ1rQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHFYP0fcoAQigWbagpg9xZwbKvO1US8SiHb/27acrBvkHWzDbCCcNGoBPnP6rLuvxQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "251f78f4-cf63-4f0c-96e7-3ef43f599fa9",
+                            SecurityStamp = "82088918-1068-4a2c-80b4-1d155bbf32b2",
                             TwoFactorEnabled = false,
                             UserName = "writer@writer.com"
                         },
                         new
                         {
-                            Id = "4e844ced-6701-4ec3-bf8b-077b160915af",
+                            Id = "fb40a4cc-e191-4521-8dd4-3120a358bb44",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "c0ca0443-2ab4-4c80-8b9f-5d3211add58e",
+                            ConcurrencyStamp = "bd5b53b3-f8e9-4762-9a49-9de5b6ad4e22",
                             CreationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "visitor@visitor.com",
                             EmailConfirmed = true,
@@ -342,9 +344,9 @@ namespace MVCBlogProject.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "VISITOR@VISITOR.COM",
                             NormalizedUserName = "VISITOR@VISITOR.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDJ8+oQ+BEwJWVlv13Sz2EUhjJP2qx17LlHoq3Hf8fL7InRAuAfdEU8WZfSGiN5nPQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMmgJg98CJEHcAkdo5CLVdUxOQQGjGbod9FTNYDaQ5Nk+onWbTUQQ3ksaq6jCXl/xA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2529901c-d1ea-4899-9352-2cf3d64e4df7",
+                            SecurityStamp = "8a171b62-69df-40cb-9555-d3e68e8dd77e",
                             TwoFactorEnabled = false,
                             UserName = "visitor@visitor.com"
                         });
@@ -364,9 +366,6 @@ namespace MVCBlogProject.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ReadCount")
