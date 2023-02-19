@@ -40,7 +40,8 @@ namespace MVCBlogProject.Controllers
         }
         [HttpPost]
         public IActionResult AddArticle(ArticlesCreateIndexVM articlesIndexVM) 
-        { Article article = new Article(); 
+        { 
+            Article article = new Article(); 
             article.Content = articlesIndexVM.Content;
             article.ApplicationUserId = articlesIndexVM.UserId; 
             article.TitleName = articlesIndexVM.Name;
