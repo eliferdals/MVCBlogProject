@@ -12,6 +12,9 @@ namespace MVCBlogProject.Models
         public IFormFile UpdateImage { get; set; }
         public string UserId { get; set; }
 
+        //public IEnumerable<Article> ChoosenTopic { get; set; }
+        
+
 
     }
 }

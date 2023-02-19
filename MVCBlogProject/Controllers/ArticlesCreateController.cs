@@ -43,8 +43,8 @@ namespace MVCBlogProject.Controllers
         { Article article = new Article(); 
             article.Content = articlesIndexVM.Content;
             article.ApplicationUserId = articlesIndexVM.UserId; 
-            article.TitleName = articlesIndexVM.Name; 
-  
+            article.TitleName = articlesIndexVM.Name;
+            //articlesIndexVM.ChoosenTopic = article.ApplicationUserId;
             articleRepository.Add(article); 
             return RedirectToAction(nameof(Index)); 
         }
